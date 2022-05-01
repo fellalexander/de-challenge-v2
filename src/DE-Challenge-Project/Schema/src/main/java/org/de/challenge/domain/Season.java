@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+/**
+ * Created with app.quicktype.io
+ */
 @lombok.Data
 public class Season implements Serializable {
     @lombok.Getter(onMethod_ = {@JsonProperty("AC")})
