@@ -20,10 +20,9 @@ public class MultiDateDeserializer extends StdDeserializer<LocalDate> {
 
     private static final DateTimeFormatter DATE_TIME_FORMATTER = new DateTimeFormatterBuilder()
             .appendOptional(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+            .appendOptional(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
             .appendOptional(DateTimeFormatter.ofPattern("dd/MM/yy"))
-            .parseDefaulting(ChronoField.NANO_OF_DAY, 0)
-            .toFormatter()
-            .withZone(ZoneOffset.UTC);
+            .toFormatter();
 
     public MultiDateDeserializer() {
         this(null);
@@ -42,6 +41,7 @@ public class MultiDateDeserializer extends StdDeserializer<LocalDate> {
             } catch (Exception e) {
             }
 
-        throw new JsonParseException(jp, "Unparseable date: \"" + date + "\". Supported formats: yyyy-MM-dd and dd/MM/yy");
+        throw new JsonParseException(jp, "Unparseable date: \"" + date + "\". Supported formats: yyyy-MM-dd, " +
+                "dd/MM/yyyy, and dd/MM/yy");
     }
 }

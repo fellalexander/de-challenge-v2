@@ -1,6 +1,7 @@
 package org.de.challenge.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import org.de.challenge.converter.MultiDateDeserializer;
@@ -12,6 +13,7 @@ import java.time.LocalDate;
  * Created with app.quicktype.io
  */
 @lombok.Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Season implements Serializable {
     @lombok.Getter(onMethod_ = {@JsonProperty("AC")})
     @lombok.Setter(onMethod_ = {@JsonProperty("AC")})

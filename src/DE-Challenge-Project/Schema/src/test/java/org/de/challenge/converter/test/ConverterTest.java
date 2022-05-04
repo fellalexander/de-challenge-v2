@@ -14,6 +14,8 @@ import static org.junit.Assert.assertEquals;
 public class ConverterTest {
 private String samplePath1="src/test/resources/data-sample.json";
 private String samplePath2="src/test/resources/data-sample2.json";
+private String samplePath3="src/test/resources/data-sample3.json";
+private String samplePath4="src/test/resources/data-sample4.json";
 
     @Test
     public void ConversionTest() throws IOException {
@@ -25,6 +27,20 @@ private String samplePath2="src/test/resources/data-sample2.json";
     @Test
     public void ConversionTestOtherTimeFormat() throws IOException {
         String json= loadJson(samplePath2);
+        Season[] seasons= Converter.fromJsonString(json);
+        assertEquals(2,seasons.length);
+    }
+
+    @Test
+    public void ConversionTestExtraField() throws IOException {
+        String json= loadJson(samplePath3);
+        Season[] seasons= Converter.fromJsonString(json);
+        assertEquals(2,seasons.length);
+    }
+
+    @Test
+    public void ConversionTestYetAnotherTimeFormat() throws IOException {
+        String json= loadJson(samplePath4);
         Season[] seasons= Converter.fromJsonString(json);
         assertEquals(2,seasons.length);
     }
