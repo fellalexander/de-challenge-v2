@@ -12,17 +12,24 @@ import java.nio.file.Paths;
 import static org.junit.Assert.assertEquals;
 
 public class ConverterTest {
-private String samplePath="src/test/resources/data-sample.json";
+private String samplePath1="src/test/resources/data-sample.json";
+private String samplePath2="src/test/resources/data-sample2.json";
+
     @Test
     public void ConversionTest() throws IOException {
-        String json= loadJson();
+        String json= loadJson(samplePath1);
         Season[] seasons= Converter.fromJsonString(json);
         assertEquals(2,seasons.length);
     }
 
-    //TODO: test objects with OpenPojo https://github.com/OpenPojo/openpojo
+    @Test
+    public void ConversionTestOtherTimeFormat() throws IOException {
+        String json= loadJson(samplePath2);
+        Season[] seasons= Converter.fromJsonString(json);
+        assertEquals(2,seasons.length);
+    }
 
-    private String loadJson() throws IOException {
+    private String loadJson(String samplePath) throws IOException {
         return new String(Files.readAllBytes(Paths.get(samplePath)));
     }
 

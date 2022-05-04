@@ -1,6 +1,9 @@
 package org.de.challenge.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import org.de.challenge.converter.MultiDateDeserializer;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -114,6 +117,7 @@ public class Season implements Serializable {
     private int bbOU;
     @lombok.Getter(onMethod_ = {@JsonProperty("Date")})
     @lombok.Setter(onMethod_ = {@JsonProperty("Date")})
+    @JsonDeserialize(using = MultiDateDeserializer.class)
     private LocalDate date;
     @lombok.Getter(onMethod_ = {@JsonProperty("Div")})
     @lombok.Setter(onMethod_ = {@JsonProperty("Div")})
